@@ -12,7 +12,7 @@
 
 <h2  align="center">Flow Chart</h2>
 <p>
-  ![Shell drawio](https://github.com/user-attachments/assets/965fe6f7-67dd-4ed1-bab5-c37b1501b162)
+  <img src="https://github.com/user-attachments/assets/965fe6f7-67dd-4ed1-bab5-c37b1501b162" alt="Flowchart">
 </p>
 
 <h2 align="center"> Return Value </h2>
