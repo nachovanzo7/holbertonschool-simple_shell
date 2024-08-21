@@ -9,7 +9,15 @@ The implementation has a variety of functions and system calls to manage file op
 gcc with the -Wall, -Werror, -Wextra and -pedantic flags, ensuring that the code is robust and adheres to the GNU89 standard.
 
 <h2  align="center">Files Description</h2>
-
+- **AUTHORS**: This file contains the list of contributors to the project, providing proper attribution for those who have worked on this simple shell implementation.
+  
+- **README.md**: The README file provides an overview of the project, including its purpose, installation instructions, usage examples, and details about the functions and system calls used. It serves as the main documentation for the project.
+  
+- **hsh**: This is the compiled executable of the simple shell program. Running this file starts the shell, allowing users to enter commands in both interactive and non-interactive modes.
+  
+- **man_1_simple_shell**: This file contains the manual (man) page for the simple shell, offering detailed information on how to use the shell, including available commands and options.
+  
+- **shell.c**: The main C source file for the simple shell program. It contains the core logic and functions necessary to interpret and execute commands entered by the user.
 
 <h2  align="center">Flow Chart</h2>
   <img src="https://github.com/user-attachments/assets/965fe6f7-67dd-4ed1-bab5-c37b1501b162" alt="Flowchart">
