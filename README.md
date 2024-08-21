@@ -6,7 +6,7 @@ The Simple Shell Project is a basic UNIX shell implementation that allows users 
 
 <h2  align="center">What We're Working With</h2> 
 The implementation has a variety of functions and system calls to manage file operations, process control, and memory allocation. Specifically, we utilize functions from the string.h library, as well as system calls and functions such as access, chdir, close, execve, fork, getpid, kill, malloc, open, read, write, and many more. The shell is designed to handle both interactive and non-interactive modes, enabling users to execute commands directly or through input redirection. We are adhering to strict compilation standards using 
- `gcc` with the `-Wall, -Werror, -Wextra` and `-pedantic` flags, ensuring that the code is robust and adheres to the GNU89 standard.
+gcc with the -Wall, -Werror, -Wextra and -pedantic flags, ensuring that the code is robust and adheres to the GNU89 standard.
 
 <h2  align="center">Files Description</h2>
 
