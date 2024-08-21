@@ -9,6 +9,7 @@ The implementation has a variety of functions and system calls to manage file op
 gcc with the -Wall, -Werror, -Wextra and -pedantic flags, ensuring that the code is robust and adheres to the GNU89 standard.
 
 <h2  align="center">Files Description</h2>
+
 - **AUTHORS**: This file contains the list of contributors to the project, providing proper attribution for those who have worked on this simple shell implementation.
   
 - **README.md**: The README file provides an overview of the project, including its purpose, installation instructions, usage examples, and details about the functions and system calls used. It serves as the main documentation for the project.
