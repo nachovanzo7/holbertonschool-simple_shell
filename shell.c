@@ -11,12 +11,22 @@
  *@command: comando ingresado por el usuario
  */
 
-char *command_in_path(char *command)
+char *command_in_path(char *command, char *environ[])
 {
-	char *dir, *path, *path_aux;
+	char *dir = NULL, *path = NULL, *path_aux = NULL;
 	static char path_env[1024];
+	int i = 0;
 
-	path = getenv("PATH");
+	while (environ[i] != NULL)
+	{
+		if (strncmp(environ[i], "PATH=", 5) == 0)
+		{
+			path = environ[i] + 5; /*Ignorar el "PATH=" (+5)*/
+			break;
+		}
+		i++;
+	}
+
 	path_aux = strdup(path); /*duplico para modificar*/
 	dir = strtok(path_aux, ":");
 
@@ -91,7 +101,7 @@ int main(int argc, char *argv[], char *env[])
 
 		if (access(command, X_OK) != 0)
 		{
-			command = command_in_path(argu[0]);
+			command = command_in_path(argu[0], env);
 
 			if (command == NULL)
 			{
