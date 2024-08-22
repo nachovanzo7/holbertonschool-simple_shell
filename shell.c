@@ -106,6 +106,7 @@ int main(int argc, char *argv[], char *env[])
 			if (command == NULL)
 			{
 				fprintf(stderr, "%s: %d: %s: not found\n", argv[0], count, argu[0]);
+				exit(127);
 				continue;	
 			}
 		}
