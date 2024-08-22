@@ -44,12 +44,12 @@ char *command_in_path(char *command, char *environ[])
 
 int main(int argc, char *argv[], char *env[])
 {
-	char *linea, *command;
-	size_t len; /*Getline recibe un size_t*/
-	ssize_t read;
+	char *linea = NULL, *command = NULL;
+	size_t len = 0; /*Getline recibe un size_t*/
+	ssize_t read = 0;
 	char *argu[100]; /*Array para almacenar el comando y argumentos*/
 	pid_t pid;
-	int status, i, error, count = 0;
+	int status = 0, i = 0, error = 0, count = 0;
 
 	(void)argc;
 	len = 0;
@@ -58,6 +58,7 @@ int main(int argc, char *argv[], char *env[])
 	while (1) /*Se sale del bucle con exit*/
 	{
 		count++;
+		error = 0;
 		if (isatty(STDIN_FILENO))
 			printf("CashelljeroFino$ "); /*mostrar prompt*/
 
@@ -100,8 +101,7 @@ int main(int argc, char *argv[], char *env[])
 			if (command == NULL)
 			{
 				fprintf(stderr, "%s: %d: %s: not found\n", argv[0], count, argu[0]);
-				status = 127;
-				printf("%d", status);
+				error = 127;
 				continue;	
 			}
 		}
@@ -113,8 +113,9 @@ int main(int argc, char *argv[], char *env[])
 			/*Proceso hijo*/
 			if (execve(command, argu, env) == -1)
 			{
-				printf("%s: %d: %s: %s:", argv[0], count, argu[0], strerror(errno));
-				exit(127);
+				fprintf(stderr, "%s: %d: %s: %s:", argv[0], count, argu[0], strerror(errno));
+				error = 127;
+				break;
 			}
 		}
 
@@ -130,8 +131,6 @@ int main(int argc, char *argv[], char *env[])
 				if (error != 0)
 				{
 					fprintf(stderr, "%s: %d: %s: status %d\n", argv[0], count, argu[0], error);
-					status = error;
-					printf("%d", status);
 				}
 			}
 		}
@@ -144,5 +143,5 @@ int main(int argc, char *argv[], char *env[])
 	}
 
 	free(linea);
-	return 0;
+	return (error);
 }
