@@ -25,8 +25,6 @@ char *command_in_path(char *command)
 		/*Concateno dir con el nombre del comando, todo en path_env*/
 		snprintf(path_env, sizeof(path_env), "%s/%s", dir, command);
 
-		printf("Verificando ruta: %s\n", path_env);
-
 		if (access(path_env, X_OK) == 0) /*Me fijo si es ejecutable, true = 0*/
 		{
 			free(path_aux);
