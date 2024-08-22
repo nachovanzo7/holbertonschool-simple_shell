@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 /**
  *command_in_path - Buscar comando (input) en PATH
@@ -54,7 +55,7 @@ int main(int argc, char *argv[], char *env[])
 	ssize_t read;
 	char *argu[100]; /*Array para almacenar el comando y argumentos*/
 	pid_t pid;
-	int status, i;
+	int status, i, error, count = 0;
 
 	(void)argc;
 	len = 0;
@@ -62,6 +63,7 @@ int main(int argc, char *argv[], char *env[])
 
 	while (1) /*Se sale del bucle con exit*/
 	{
+		count++;
 		if (isatty(STDIN_FILENO))
 			printf("CashelljeroFino$ "); /*mostrar prompt*/
 
@@ -71,8 +73,7 @@ int main(int argc, char *argv[], char *env[])
 		{
 			if (isatty(STDIN_FILENO))
 				printf("\n");
-			free(linea);
-			exit(0);
+			break;
 		}
 
 		/*Borrar el salto de linea*/
@@ -93,8 +94,7 @@ int main(int argc, char *argv[], char *env[])
 
 		if (strcmp(argu[0], "exit") == 0)
 		{
-			free(linea);
-			exit(0);
+			break;
 		}
 
 		command = argu[0];
@@ -105,7 +105,7 @@ int main(int argc, char *argv[], char *env[])
 
 			if (command == NULL)
 			{
-				printf("%s: %s: No such file or directory\n", argv[0], argu[0]);
+				fprintf(stderr, "%s: %d: %s: not found\n", argv[0], count, argu[0]);
 				continue;	
 			}
 		}
@@ -116,15 +116,24 @@ int main(int argc, char *argv[], char *env[])
 		{
 			/*Proceso hijo*/
 			if (execve(command, argu, env) == -1)
-				perror(argv[0]);
-
-			exit(-1);
+			{
+				printf("%s: %d: %s: %s:", argv[0], errno, argu[0], strerror(errno));
+				exit(127);
+			}
 		}
 
 		else if (pid > 0)
 		{
 			/*Proceso padre*/
 			waitpid(pid, &status, 0);
+
+			if (WIFEXITED(status))
+			{
+				error = WEXITSTATUS(status);
+				
+				if (error != 0)
+					printf("%s: %d: %s: status %d\n", argv[0], pid, argu[0], error);
+			}
 		}
 
 		else
