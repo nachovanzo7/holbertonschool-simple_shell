@@ -100,6 +100,8 @@ int main(int argc, char *argv[], char *env[])
 			if (command == NULL)
 			{
 				fprintf(stderr, "%s: %d: %s: not found\n", argv[0], count, argu[0]);
+				status = 127;
+				printf("%d", status);
 				continue;	
 			}
 		}
@@ -126,7 +128,11 @@ int main(int argc, char *argv[], char *env[])
 				error = WEXITSTATUS(status);
 				
 				if (error != 0)
+				{
 					fprintf(stderr, "%s: %d: %s: status %d\n", argv[0], count, argu[0], error);
+					status = error;
+					printf("%d", status);
+				}
 			}
 		}
 
