@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <errno.h>
+#include "shell.h"
 
 /**
  *command_in_path - Buscar comando (input) en PATH
@@ -106,7 +100,6 @@ int main(int argc, char *argv[], char *env[])
 			if (command == NULL)
 			{
 				fprintf(stderr, "%s: %d: %s: not found\n", argv[0], count, argu[0]);
-				exit(127);
 				continue;	
 			}
 		}
@@ -118,7 +111,7 @@ int main(int argc, char *argv[], char *env[])
 			/*Proceso hijo*/
 			if (execve(command, argu, env) == -1)
 			{
-				printf("%s: %d: %s: %s:", argv[0], errno, argu[0], strerror(errno));
+				printf("%s: %d: %s: %s:", argv[0], count, argu[0], strerror(errno));
 				exit(127);
 			}
 		}
@@ -133,7 +126,7 @@ int main(int argc, char *argv[], char *env[])
 				error = WEXITSTATUS(status);
 				
 				if (error != 0)
-					printf("%s: %d: %s: status %d\n", argv[0], pid, argu[0], error);
+					fprintf(stderr, "%s: %d: %s: status %d\n", argv[0], count, argu[0], error);
 			}
 		}
 
