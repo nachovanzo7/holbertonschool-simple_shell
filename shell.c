@@ -101,7 +101,7 @@ int main(int argc, char *argv[], char *env[])
 			if (command == NULL)
 			{
 				fprintf(stderr, "%s: %d: %s: not found\n", argv[0], count, argu[0]);
-				error = 127;
+				status = 127;
 				continue;	
 			}
 		}
@@ -114,7 +114,7 @@ int main(int argc, char *argv[], char *env[])
 			if (execve(command, argu, env) == -1)
 			{
 				fprintf(stderr, "%s: %d: %s: %s:", argv[0], count, argu[0], strerror(errno));
-				error = 127;
+				status = 127;
 				break;
 			}
 		}
