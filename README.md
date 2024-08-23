@@ -18,7 +18,14 @@ gcc with the -Wall, -Werror, -Wextra and -pedantic flags, ensuring that the code
   
 - **shell.c**: The main C source file for the simple shell program. It contains the core logic and functions necessary to interpret and execute commands entered by the user.
 
+- **shell.h**: The main.h file contains all the libraries used within our shell
+
 <h2  align="center">Flow Chart</h2>
   <img src="https://github.com/user-attachments/assets/965fe6f7-67dd-4ed1-bab5-c37b1501b162" alt="Flowchart">
 
 <h2  align="center">Examples of Use</h2>
+*Command ls*
+<img src="https://github.com/user-attachments/assets/c7a42ff1-6c72-4948-ab98-96221d01e165" alt="Examples ls">
+
+*Command cat*
+<img src= "https://github.com/user-attachments/assets/9b9e8e86-6ecb-44a5-97e3-c4b9bb9b65d3" alt="Example cat">
