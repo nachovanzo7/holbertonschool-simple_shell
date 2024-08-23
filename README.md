@@ -27,7 +27,7 @@ gcc with the -Wall, -Werror, -Wextra and -pedantic flags, ensuring that the code
 
 <h2 align="left">Command ls</h2>
 The ls command in Unix and Linux systems is used to list the contents of a directory. 
-It displays the names of the files and subdirectories located in the current directory or in a specified directory.
+<br>It displays the names of the files and subdirectories located in the current directory or in a specified directory.
 <img src="https://github.com/user-attachments/assets/c7a42ff1-6c72-4948-ab98-96221d01e165" alt="Examples ls">
 <br>
 <h2 align="left">Command cat</h2>
